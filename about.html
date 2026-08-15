@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALGOFLOW | ABOUT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/about.css">
+    <script src="js/app/theme.js"></script>
+    <script src="js/app/auth.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="./index.html" class="logo-link" style="text-decoration:none;">
+            <div class="logo">ALGOFLOW</div>
+        </a>
+        <div class="nav-links">
+            <a href="engine.html">ENGINE</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="about.html">ABOUT</a>
+            <a href="login.html" id="auth-link">LOGIN</a>
+            <button id="theme-toggle">🌙 DARK</button>
+        </div>
+    </nav>
+
+    <main class="bento-grid">
+        <div class="bento-card hero-card" style="display: flex; flex-direction: column; justify-content: center; padding: 60px 40px;">
+            <h1 style="font-size: 3rem; margin-bottom: 20px;">The Vision</h1>
+            <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 1.6; max-width: 900px;">
+                AlgoFlow demystifies complex data structures and algorithms through fluid, 60FPS visualizations. No black magic, just pure execution steps. It was built to push the boundaries of pure Vanilla JavaScript, exploring raw DOM manipulation, Web Workers, and Generator functions without relying on heavy frontend frameworks.
+            </p>
+        </div>
+
+        <div class="bento-card" style="grid-column: span 2; display: flex; flex-direction: column; justify-content: center; padding: 40px;">
+            <h2 style="font-size: 1.8rem; margin-bottom: 15px;">The Creator</h2>
+            <p style="font-size: 1.1rem; color: var(--text-muted); line-height: 1.6;">
+                Developed by <strong style="color: var(--text);">Amritpal Singh</strong>, currently pursuing a Bachelor of Science in Computer Science at Chitkara University (Class of 2028). While typically working with full-stack frameworks like React and Django, this project served as a deep dive into core web technologies and algorithm optimization.
+            </p>
+            <div class="action-group" style="margin-top: 25px;">
+                <button class="brutal-btn primary" onclick="window.location.href='contact.html'" style="border-radius: 50px; padding: 12px 24px;">GET IN TOUCH</button>
+            </div>
+        </div>
+
+        <div class="bento-card" style="grid-column: span 2; display: flex; flex-direction: column; justify-content: center; padding: 40px;">
+            <h2 style="font-size: 1.8rem; margin-bottom: 15px;">Focus Areas</h2>
+            <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 20px;">
+                Constant learning and specialization in modern computing fields:
+            </p>
+            <div class="tags">
+                <span class="tag">Data Science</span>
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Algorithm Optimization</span>
+                <span class="tag">Object Oriented Programming</span>
+                <span class="tag">Vanilla JS</span>
+                <span class="tag">Web Workers</span>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
