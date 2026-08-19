@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALGOFLOW | BINARY SEARCH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/search.css">
+    <script src="js/app/theme.js"></script>
+    <script src="js/app/auth.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="./index.html" class="logo-link">
+            <div class="logo">ALGOFLOW</div>
+        </a>
+        <div class="nav-links">
+            <a href="engine.html">ENGINE</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="about.html">ABOUT</a>
+            <a href="login.html" id="auth-link">LOGIN</a>
+            <button id="theme-toggle">🌙 DARK</button>
+        </div>
+    </nav>
+
+    <main class="bento-grid search-layout">
+        <div class="bento-card controls-card">
+            <h2>SEARCH ENGINE</h2>
+            
+            <div class="control-group">
+                <label>SORTED DATA (COMMA SEPARATED)</label>
+                <div class="array-input-wrapper">
+                    <input type="text" id="custom-array" class="brutal-input array-input-enhanced" placeholder="10, 22, 35, 40, 55">
+                </div>
+                <div class="btn-row" style="margin-top: 5px;">
+                    <button id="btn-set-custom" class="brutal-btn">SET DATA</button>
+                    <button id="btn-random" class="brutal-btn">RANDOMIZE</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>TARGET ELEMENT</label>
+                <input type="number" id="target-value" class="brutal-input" placeholder="e.g. 35">
+            </div>
+
+            <div class="control-group">
+                <label>SPEED DELAY</label>
+                <input type="range" id="speed-slider" min="10" max="1000" value="400" class="brutal-range">
+                <span id="speed-display" style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted); margin-top: -5px;">400ms</span>
+            </div>
+
+            <div class="control-group" style="margin-top: 10px;">
+                <label>EXECUTION CONTROLS</label>
+                <select id="algo-select" class="brutal-input">
+                    <option value="binary">BINARY SEARCH</option>
+                </select>
+                
+                <button id="btn-start" class="brutal-btn primary" style="margin-top: 10px; width: 100%;">COMPUTE & START</button>
+                
+                <div class="playback-controls">
+                    <button id="btn-prev" class="brutal-btn btn-playback" disabled>◄ STEP</button>
+                    <button id="btn-pause" class="brutal-btn btn-playback" disabled>||</button>
+                    <button id="btn-next" class="brutal-btn btn-playback" disabled>STEP ►</button>
+                </div>
+            </div>
+            
+            <div id="status-display" class="status-box">AWAITING EXECUTION</div>
+        </div>
+
+        <div class="bento-card viz-card">
+            <div id="viz-container" class="viz-container viz-mode-blocks"></div>
+        </div>
+    </main>
+
+    <script src="js/visualizers/SearchVisualizer.js"></script>
+    <script src="js/app/app_search.js"></script>
+</body>
+</html>

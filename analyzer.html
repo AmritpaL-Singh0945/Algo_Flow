@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALGOFLOW | ANALYZER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/analyzer.css">
+    <script src="js/app/theme.js"></script>
+    <script src="js/app/auth.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="./index.html" class="logo-link">
+            <div class="logo">ALGOFLOW</div>
+        </a>
+        <div class="nav-links">
+            <a href="engine.html">ENGINE</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="about.html">ABOUT</a>
+            <a href="login.html" id="auth-link">LOGIN</a>
+            <button id="theme-toggle">🌙 DARK</button>
+        </div>
+    </nav>
+
+    <main class="bento-grid analyzer-layout">
+        <!-- Left Side: Editor -->
+        <div class="bento-card editor-card">
+            <div class="editor-header">
+                <h2>CODE EDITOR</h2>
+                <select id="lang-select" class="brutal-input lang-select">
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                    <option value="cpp">C++</option>
+                </select>
+            </div>
+            
+            <textarea id="code-input" class="brutal-textarea" spellcheck="false" placeholder="// Paste your code here to analyze...&#10;&#10;function fibonacci(n) {&#10;    if (n <= 1) return n;&#10;    return fibonacci(n-1) + fibonacci(n-2);&#10;}"></textarea>
+            
+            <button id="btn-analyze" class="brutal-btn primary analyze-btn">INITIATE DRY RUN & ANALYSIS</button>
+        </div>
+
+        <!-- Right Side: Results -->
+        <div class="results-column">
+            <div class="complexity-row">
+                <div class="bento-card complexity-card">
+                    <div class="comp-label">TIME COMPLEXITY</div>
+                    <div id="tc-display" class="comp-value">O(?)</div>
+                </div>
+                <div class="bento-card complexity-card">
+                    <div class="comp-label">SPACE COMPLEXITY</div>
+                    <div id="sc-display" class="comp-value">O(?)</div>
+                </div>
+            </div>
+
+            <div class="bento-card terminal-card">
+                <div class="terminal-header">
+                    <div class="mac-btns">
+                        <div class="mac-btn close"></div>
+                        <div class="mac-btn min"></div>
+                        <div class="mac-btn max"></div>
+                    </div>
+                    <span>DRY_RUN_OUTPUT.EXE</span>
+                </div>
+                <div id="terminal-output" class="terminal-body">
+                    <div class="term-line">System ready. Waiting for code input...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app/app_analyzer.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+.analyzer-layout {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    height: calc(100vh - 120px);
+    gap: 20px;
+}
+
+/* Editor Section */
+.editor-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lang-select {
+    width: auto;
+    padding: 5px 10px;
+    font-size: 0.85rem;
+}
+
+.brutal-textarea {
+    flex: 1;
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-color);
+    color: var(--text);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.95rem;
+    padding: 15px;
+    resize: none;
+    outline: none;
+    box-shadow: inset 4px 4px 0px var(--shadow-color);
+}
+
+.brutal-textarea:focus {
+    border-color: var(--subtle-blue);
+}
+
+.analyze-btn {
+    padding: 15px;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Results Section */
+.results-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+.complexity-row {
+    display: flex;
+    gap: 20px;
+    height: 120px;
+}
+
+.complexity-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--subtle-blue);
+    border-color: var(--text);
+    transition: all 0.3s;
+}
+
+.comp-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--text);
+}
+
+.comp-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: 'Fira Code', monospace;
+    color: var(--bg);
+}
+
+/* Terminal Styling */
+.terminal-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+    background: var(--bg);
+    border-color: var(--text);
+}
+
+.terminal-header {
+    background: var(--border-color);
+    color: var(--bg);
+    padding: 10px 15px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.mac-btns {
+    display: flex;
+    gap: 6px;
+}
+
+.mac-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.mac-btn.close { background: #ff5f56; }
+.mac-btn.min { background: #ffbd2e; }
+.mac-btn.max { background: #27c93f; }
+
+.terminal-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    color: #00ff00;
+    line-height: 1.5;
+}
+
+.term-line {
+    margin-bottom: 5px;
+    opacity: 0;
+    animation: fadeIn 0.1s forwards;
+}
+
+.term-line::before {
+    content: "> ";
+    color: var(--subtle-blue);
+    font-weight: 700;
+}
+
+.term-error {
+    color: #ff5f56;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}

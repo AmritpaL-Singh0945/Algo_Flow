@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALGOFLOW | ENGINE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/engine.css">
+    <script src="js/app/theme.js"></script>
+    <script src="js/app/auth.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a class="logo" href="./index.html" >ALGOFLOW</a>
+        <div class="nav-links">
+            <a href="engine.html">ENGINE</a>
+            <a href="./contact.html">CONTACT</a>
+            <a href="./about.html">ABOUT</a>
+            <a href="login.html" id="auth-link">LOGIN</a>
+            <button id="theme-toggle">🌙 DARK</button>
+        </div>
+    </nav>
+
+    <main id="canvas-container">
+        <div id="tree-wrapper">
+            <div class="tree">
+                <ul>
+                    <li>
+                        <a href="#" class="node">ARRAYS</a>
+                        <ul>
+                            <li>
+                                <a href="#" class="node">TWO POINTERS</a>
+                                <ul>
+                                    <li>
+                                        <a href="#" class="node">BINARY SEARCH</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="node">LINKED LIST</a>
+                                <ul>
+                                    <li>
+                                        <a href="#" class="node">TREES</a>
+                                        <ul>
+                                            <li>
+                                                <a href="#" class="node">GRAPHS</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="node">DP</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- NEW ANALYZER BRANCH -->
+                            <li>
+                                <a href="#" class="node">ANALYZER</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="zoom-controls">
+            <button id="zoom-in" class="control-btn">+</button>
+            <button id="zoom-out" class="control-btn">-</button>
+            <button id="zoom-reset" class="control-btn">O</button>
+        </div>
+    </main>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2 id="sidebar-title">TOPIC</h2>
+            <button id="close-sidebar" class="control-btn">X</button>
+        </div>
+        <div id="sidebar-content" class="sidebar-content">
+        </div>
+    </aside>
+
+    <script>
+        const canvas = document.getElementById('canvas-container');
+        const wrapper = document.getElementById('tree-wrapper');
+        
+        let scale = 1;
+        let panning = false;
+        let pointX = 0;
+        let pointY = 0;
+        let startX = 0;
+        let startY = 0;
+
+        function setTransform() {
+            wrapper.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
+        }
+
+        canvas.onmousedown = function(e) {
+            if(e.target.classList.contains('node')) return;
+            
+            e.preventDefault();
+            panning = true;
+            canvas.style.cursor = 'grabbing';
+            startX = e.clientX - pointX;
+            startY = e.clientY - pointY;
+        };
+
+        canvas.onmouseup = function() {
+            panning = false;
+            canvas.style.cursor = 'grab';
+        };
+
+        canvas.onmouseleave = function() {
+            panning = false;
+            canvas.style.cursor = 'grab';
+        };
+
+        canvas.onmousemove = function(e) {
+            if (!panning) return;
+            pointX = e.clientX - startX;
+            pointY = e.clientY - startY;
+            setTransform();
+        };
+
+        canvas.onwheel = function(e) {
+            e.preventDefault();
+            const xs = (e.clientX - pointX) / scale;
+            const ys = (e.clientY - pointY) / scale;
+            const delta = e.wheelDelta ? e.wheelDelta : -e.deltaY;
+            
+            if (delta > 0) {
+                scale *= 1.1;
+            } else {
+                scale /= 1.1;
+            }
+            
+            scale = Math.min(Math.max(0.4, scale), 3);
+            
+            pointX = e.clientX - xs * scale;
+            pointY = e.clientY - ys * scale;
+            
+            setTransform();
+        };
+
+        document.getElementById('zoom-in').onclick = () => {
+            scale *= 1.2;
+            scale = Math.min(scale, 3);
+            setTransform();
+        };
+
+        document.getElementById('zoom-out').onclick = () => {
+            scale /= 1.2;
+            scale = Math.max(0.4, scale);
+            setTransform();
+        };
+
+        document.getElementById('zoom-reset').onclick = () => {
+            scale = 1;
+            pointX = 0;
+            pointY = 0;
+            setTransform();
+        };
+
+        const sidebar = document.getElementById('sidebar');
+        const closeSidebarBtn = document.getElementById('close-sidebar');
+        const sidebarTitle = document.getElementById('sidebar-title');
+        const sidebarContent = document.getElementById('sidebar-content');
+
+        const topicsMap = {
+            "ARRAYS": ["Bubble Sort", "Merge Sort", "Insertion Sort", "Selection Sort"],
+            "TWO POINTERS": ["Reverse Array", "Valid Palindrome", "Two Sum II"],
+            "LINKED LIST": ["Reverse a Linked List", "Find the Middle Node", "Detect Cycle"],
+            "BINARY SEARCH": ["Finding the Target Element"],
+            "TREES": ["BFS (Breadth-First)", "DFS (Depth-First)"],
+            "GRAPHS": ["Graph BFS", "Graph DFS", "Dijkstra's Algorithm"],
+            "DP": ["0/1 Knapsack", "Unbounded Knapsack"],
+            "ANALYZER": ["Smart Code Dry-Run"] 
+        };
+
+        const routeMap = {
+            "Bubble Sort": "arrays.html?algo=bubble",
+            "Selection Sort": "arrays.html?algo=selection",
+            "Insertion Sort": "arrays.html?algo=insertion",
+            "Merge Sort": "arrays.html?algo=merge",
+            "Finding the Target Element": "binary_search.html?algo=binary",
+            "BFS (Breadth-First)": "trees.html?algo=bfs",
+            "DFS (Depth-First)": "trees.html?algo=dfs_pre",
+            "Graph BFS": "graphs.html?algo=bfs",
+            "Graph DFS": "graphs.html?algo=dfs",
+            "Dijkstra's Algorithm": "graphs.html?algo=dijkstra",
+            "0/1 Knapsack": "dp.html?algo=knapsack01",
+            "Unbounded Knapsack": "dp.html?algo=unbounded",
+            "Reverse a Linked List": "linkedlist.html?algo=reverse",
+            "Find the Middle Node": "linkedlist.html?algo=middle",
+            "Detect Cycle": "linkedlist.html?algo=cycle",
+            "Reverse Array": "twopointers.html?algo=reverse",
+            "Valid Palindrome": "twopointers.html?algo=palindrome",
+            "Two Sum II": "twopointers.html?algo=twosum",
+            "Smart Code Dry-Run": "analyzer.html"
+
+        };
+
+        document.querySelectorAll('.node').forEach(node => {
+            node.addEventListener('click', (e) => {
+                e.preventDefault();
+                const topic = e.target.textContent.trim();
+                const items = topicsMap[topic] || [];
+                
+                sidebarTitle.textContent = topic;
+                sidebarContent.innerHTML = ''; 
+
+                items.forEach(item => {
+                    const btn = document.createElement('button');
+                    btn.className = 'topic-btn';
+                    btn.textContent = item;
+                    
+                    btn.addEventListener('click', () => {
+                        if (routeMap[item]) {
+                            window.location.href = routeMap[item];
+                        } else {
+                            alert(`${item} visualizer is under construction!`);
+                        }
+                    });
+
+                    sidebarContent.appendChild(btn);
+                });
+
+                sidebar.classList.add('active');
+            });
+        });
+
+        closeSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

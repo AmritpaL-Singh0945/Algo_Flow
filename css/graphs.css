@@ -1,0 +1,218 @@
+.graphs-layout {
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: 1fr;
+    height: calc(100vh - 120px);
+}
+
+.controls-card {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.viz-card {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    overflow: hidden;
+    display: block;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-group label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.array-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.array-input-wrapper::before {
+    content: "{ }";
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 700;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.array-input-enhanced {
+    font-family: 'Space Grotesk', monospace;
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    padding-left: 45px !important;
+    border-bottom-width: 4px;
+}
+
+.btn-row {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-row .brutal-btn {
+    flex: 1;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.playback-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-playback {
+    flex: 1;
+    padding: 10px 5px;
+    font-size: 0.9rem;
+    font-weight: 900;
+}
+
+.btn-playback:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    box-shadow: none;
+    border-color: var(--border-color);
+}
+
+.brutal-range {
+    -webkit-appearance: none;
+    width: 100%;
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-color);
+    height: 12px;
+    outline: none;
+}
+
+.brutal-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--text);
+    cursor: pointer;
+    border: var(--border-width) solid var(--bg);
+    transition: transform 0.1s;
+}
+
+.brutal-range::-webkit-slider-thumb:active {
+    transform: scale(1.2);
+}
+
+.status-box {
+    margin-top: auto;
+    padding: 15px;
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-color);
+    font-weight: 700;
+    text-align: center;
+    color: var(--text);
+    text-transform: uppercase;
+}
+
+.graph-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.graph-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.graph-line {
+    stroke: var(--border-color);
+    stroke-width: 3px;
+    transition: stroke 0.3s, stroke-width 0.3s;
+}
+
+.graph-line-active {
+    stroke: var(--subtle-blue);
+    stroke-width: 5px;
+}
+
+.edge-weight {
+    fill: var(--text);
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    text-anchor: middle;
+    dominant-baseline: central;
+    background: var(--bg);
+}
+
+.graph-node {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    background: var(--card-bg);
+    border: var(--border-width) solid var(--border-color);
+    color: var(--text);
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    box-shadow: 4px 4px 0px var(--shadow-color);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.node-distance {
+    font-size: 0.7rem;
+    color: var(--subtle-blue);
+    margin-top: -2px;
+}
+
+.node-visiting {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+    transform: translate(-50%, -50%) scale(1.15);
+    box-shadow: 6px 6px 0px var(--subtle-blue);
+}
+
+.node-visiting .node-distance {
+    color: var(--bg);
+}
+
+.node-visited {
+    background: var(--subtle-blue);
+    border-color: var(--text);
+}
+
+.node-visited .node-distance {
+    color: var(--bg);
+}
+
+.node-completed {
+    background: var(--accent-green);
+    border-color: var(--text);
+    color: var(--bg);
+}
+
+.node-completed .node-distance {
+    color: var(--bg);
+}

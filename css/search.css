@@ -1,0 +1,216 @@
+.search-layout {
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: 1fr;
+    height: calc(100vh - 120px);
+}
+
+.controls-card {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 25px;
+    overflow-y: auto;
+}
+
+.viz-card {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.control-group label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.array-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.array-input-wrapper::before {
+    content: "[ ]";
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 700;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.array-input-enhanced {
+    font-family: 'Space Grotesk', monospace;
+    font-size: 1.05rem;
+    letter-spacing: 2px;
+    padding-left: 45px !important;
+    border-bottom-width: 4px;
+}
+
+.btn-row {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-row .brutal-btn {
+    flex: 1;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.playback-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-playback {
+    flex: 1;
+    padding: 10px 5px;
+    font-size: 0.9rem;
+    font-weight: 900;
+}
+
+.btn-playback:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    box-shadow: none;
+    border-color: var(--border-color);
+}
+
+.brutal-range {
+    -webkit-appearance: none;
+    width: 100%;
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-color);
+    height: 12px;
+    outline: none;
+}
+
+.brutal-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--text);
+    cursor: pointer;
+    border: var(--border-width) solid var(--bg);
+    transition: transform 0.1s;
+}
+
+.brutal-range::-webkit-slider-thumb:active {
+    transform: scale(1.2);
+}
+
+.status-box {
+    margin-top: auto;
+    padding: 15px;
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-color);
+    font-weight: 700;
+    text-align: center;
+    color: var(--text);
+    text-transform: uppercase;
+}
+
+.viz-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.viz-block {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    background: var(--card-bg);
+    border: var(--border-width) solid var(--primary);
+    box-shadow: 4px 4px 0px var(--shadow-color);
+    transition: all 0.2s;
+    position: relative;
+}
+
+.state-discarded {
+    opacity: 0.2;
+    transform: scale(0.95);
+    box-shadow: 0px 0px 0px transparent;
+}
+
+.state-mid {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+    transform: translateY(-8px);
+    box-shadow: 6px 6px 0px var(--subtle-blue);
+}
+
+.state-success {
+    background: var(--accent-green) !important;
+    border-color: var(--text) !important;
+    color: var(--bg) !important;
+    transform: translateY(-8px);
+    box-shadow: 6px 6px 0px var(--shadow-color);
+}
+
+.state-error {
+    background: var(--accent-red) !important;
+    border-color: var(--text) !important;
+    color: var(--bg) !important;
+}
+
+.pointer-l::after {
+    content: 'L';
+    position: absolute;
+    bottom: -30px;
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--text-muted);
+}
+
+.pointer-r::after {
+    content: 'R';
+    position: absolute;
+    bottom: -30px;
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--text-muted);
+}
+
+.pointer-m::after {
+    content: 'M';
+    position: absolute;
+    top: -30px;
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--text);
+}
+
+.pointer-lr::after {
+    content: 'L/R';
+    position: absolute;
+    bottom: -30px;
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--text-muted);
+}

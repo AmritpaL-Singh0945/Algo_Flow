@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALGOFLOW | DP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dp.css">
+    <script src="js/app/theme.js"></script>
+    <script src="js/app/auth.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="./index.html" class="logo-link">
+            <div class="logo">ALGOFLOW</div>
+        </a>
+        <div class="nav-links">
+            <a href="engine.html">ENGINE</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="about.html">ABOUT</a>
+            <a href="login.html" id="auth-link">LOGIN</a>
+            <button id="theme-toggle">🌙 DARK</button>
+        </div>
+    </nav>
+
+    <main class="bento-grid dp-layout">
+        <div class="bento-card controls-card">
+            <h2>DP ENGINE</h2>
+            
+            <div class="control-group">
+                <label>WEIGHTS (MAX 10)</label>
+                <input type="text" id="weights-input" class="brutal-input" placeholder="1, 2, 3">
+            </div>
+
+            <div class="control-group">
+                <label>VALUES (MAX 10)</label>
+                <input type="text" id="values-input" class="brutal-input" placeholder="60, 100, 120">
+            </div>
+
+            <div class="control-group">
+                <label>CAPACITY (MAX 40)</label>
+                <input type="number" id="capacity-input" class="brutal-input" placeholder="5">
+            </div>
+
+            <div class="btn-row" style="margin-top: 5px;">
+                <button id="btn-set-custom" class="brutal-btn">INITIALIZE</button>
+                <button id="btn-random" class="brutal-btn">RANDOMIZE</button>
+            </div>
+
+            <div class="control-group" style="margin-top: 10px;">
+                <label>SPEED DELAY</label>
+                <input type="range" id="speed-slider" min="10" max="1500" value="600" class="brutal-range">
+                <span id="speed-display" style="font-size: 0.9rem; font-weight: 700; color: var(--text-muted); margin-top: -5px;">600ms</span>
+            </div>
+
+            <div class="control-group" style="margin-top: 10px;">
+                <label>EXECUTION CONTROLS</label>
+                <select id="algo-select" class="brutal-input">
+                    <option value="knapsack01">0/1 KNAPSACK (TABLE)</option>
+                    <option value="knapsack01_memo">0/1 KNAPSACK (MEMOIZATION TREE)</option>
+                    <option value="unbounded">UNBOUNDED KNAPSACK (TABLE)</option>
+                </select>
+                
+                <button id="btn-start" class="brutal-btn primary" style="margin-top: 10px; width: 100%;">COMPUTE & START</button>
+                
+                <div class="playback-controls">
+                    <button id="btn-prev" class="brutal-btn btn-playback" disabled>◄ STEP</button>
+                    <button id="btn-pause" class="brutal-btn btn-playback" disabled>||</button>
+                    <button id="btn-next" class="brutal-btn btn-playback" disabled>STEP ►</button>
+                </div>
+            </div>
+            
+            <div id="status-display" class="status-box">AWAITING EXECUTION</div>
+        </div>
+
+        <div class="bento-card viz-card">
+            <div id="viz-container" class="viz-container dp-container"></div>
+        </div>
+    </main>
+
+    <script src="js/visualizers/DpVisualizer.js"></script>
+    <script src="js/app/app_dp.js"></script>
+</body>
+</html>

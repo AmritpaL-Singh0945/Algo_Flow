@@ -1,0 +1,202 @@
+.arrays-layout {
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: 1fr;
+    height: calc(100vh - 120px);
+}
+
+.controls-card {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 30px;
+    overflow-y: auto;
+}
+
+.viz-card {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.control-group label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+/* --- Enhanced Array Input --- */
+.array-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.array-input-wrapper::before {
+    content: "[ ]";
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 700;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.array-input-enhanced {
+    font-family: 'Space Grotesk', monospace; /* Monospace hybrid feel */
+    font-size: 1.05rem;
+    letter-spacing: 2px;
+    padding-left: 45px !important;
+    border-bottom-width: 4px; /* Chunky base */
+}
+/* ----------------------------- */
+
+.btn-row {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-row .brutal-btn {
+    flex: 1;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.active-mode {
+    background: var(--subtle-blue);
+    border-color: var(--subtle-blue);
+}
+
+/* --- Playback Controls --- */
+.playback-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-playback {
+    flex: 1;
+    padding: 10px 5px;
+    font-size: 0.9rem;
+    font-weight: 900;
+}
+
+.btn-playback:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    box-shadow: none;
+    border-color: var(--border-color);
+}
+/* ------------------------- */
+
+.brutal-range {
+    -webkit-appearance: none;
+    width: 100%;
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-color);
+    height: 12px;
+    outline: none;
+}
+
+.brutal-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--text);
+    cursor: pointer;
+    border: var(--border-width) solid var(--bg);
+    transition: transform 0.1s;
+}
+
+.brutal-range::-webkit-slider-thumb:active {
+    transform: scale(1.2);
+}
+
+.viz-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5px;
+    padding: 20px;
+}
+
+.viz-mode-blocks {
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.bar-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    gap: 8px;
+    width: 100%;
+    max-width: 40px;
+}
+
+.viz-bar {
+    width: 100%;
+    background: var(--primary);
+    border: var(--border-width) solid var(--primary-hover);
+    transition: background 0.1s, border-color 0.1s, height 0.2s;
+}
+
+.bar-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.viz-block {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    background: var(--card-bg);
+    border: var(--border-width) solid var(--primary);
+    box-shadow: 4px 4px 0px var(--shadow-color);
+    transition: background 0.1s, border-color 0.1s, transform 0.2s;
+}
+
+.state-compare {
+    background: var(--subtle-blue);
+    border-color: var(--text);
+}
+
+.state-swap {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+    transform: translateY(-5px);
+}
+
+.state-sorted {
+    background: var(--click-blue);
+    border-color: var(--text);
+}
+
+.state-success {
+    background: var(--accent-green) !important;
+    border-color: var(--text) !important;
+    color: var(--bg) !important;
+    transform: translateY(-5px);
+}
