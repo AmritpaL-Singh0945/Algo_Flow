@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALGOFLOW | REGISTER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/about.css">
+    <script src="js/app/theme.js"></script>
+    <script src="js/app/auth.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="./index.html" class="logo-link" style="text-decoration:none;">
+            <div class="logo">ALGOFLOW</div>
+        </a>
+        <div class="nav-links">
+            <a href="engine.html">ENGINE</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="about.html">ABOUT</a>
+            <a href="login.html" id="auth-link">LOGIN</a>
+            <button id="theme-toggle">🌙 DARK</button>
+        </div>
+    </nav>
+
+    <main class="contact-wrapper">
+        <div class="bento-card contact-card" style="padding: 50px; text-align: center;">
+            <h1 style="font-size: 3rem; margin-bottom: 10px;">Create Account</h1>
+            <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem;">
+                Join AlgoFlow to save your custom visualizer settings.
+            </p>
+            
+            <form class="brutal-form" id="register-form" style="text-align: left;">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" class="brutal-input" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="brutal-input" placeholder="hello@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div style="position: relative; display: flex; align-items: center;">
+                        <input type="password" id="password" class="brutal-input" placeholder="••••••••" style="margin-bottom: 0; padding-right: 40px;" required oninput="checkStrength()">
+                        <span class="password-toggle" onclick="togglePassword('password', this)" style="position: absolute; right: 15px; cursor: pointer; color: var(--text-muted);">👁️</span>
+                    </div>
+                    <div class="strength-meter" style="height: 4px; background: var(--border-color); border-radius: 2px; margin-top: 5px; overflow: hidden;">
+                        <div id="strength-bar" style="height: 100%; width: 0%; transition: 0.3s;"></div>
+                    </div>
+                    <small id="strength-text" style="color: var(--text-muted); font-size: 0.75rem;"></small>
+                </div>
+                
+                <div class="form-group" style="margin-top: 10px;">
+                    <label for="confirm-password">Confirm Password</label>
+                    <div style="position: relative; display: flex; align-items: center;">
+                        <input type="password" id="confirm-password" class="brutal-input" placeholder="••••••••" style="margin-bottom: 0; padding-right: 40px;" required>
+                        <span class="password-toggle" onclick="togglePassword('confirm-password', this)" style="position: absolute; right: 15px; cursor: pointer; color: var(--text-muted);">👁️</span>
+                    </div>
+                </div>
+                
+                <div id="register-error" style="color: var(--accent-red); font-size: 0.9rem; font-weight: 700; display: none;"></div>
+                
+                <button type="submit" class="brutal-btn primary" style="width: 100%; margin-top: 10px; border-radius: 50px; padding: 14px;">SIGN UP</button>
+                
+                <p style="text-align: center; margin-top: 20px; color: var(--text-muted);">
+                    Already have an account? <a href="login.html" style="color: var(--primary); text-decoration: none; font-weight: 700;">Sign in</a>
+                </p>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        function checkStrength() {
+            const password = document.getElementById('password').value;
+            const bar = document.getElementById('strength-bar');
+            const text = document.getElementById('strength-text');
+            
+            let strength = 0;
+            if (password.length > 5) strength += 25;
+            if (password.length > 8) strength += 25;
+            if (/[A-Z]/.test(password)) strength += 25;
+            if (/[0-9]/.test(password)) strength += 25;
+            
+            bar.style.width = strength + '%';
+            
+            if (strength === 0) {
+                bar.style.background = 'transparent';
+                text.textContent = '';
+            } else if (strength <= 50) {
+                bar.style.background = 'var(--accent-red)';
+                text.textContent = 'Weak';
+                text.style.color = 'var(--accent-red)';
+            } else if (strength <= 75) {
+                bar.style.background = '#fbbf24'; // amber
+                text.textContent = 'Medium';
+                text.style.color = '#fbbf24';
+            } else {
+                bar.style.background = 'var(--accent-green)';
+                text.textContent = 'Strong';
+                text.style.color = 'var(--accent-green)';
+            }
+        }
+
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('confirm-password').value;
+            const errorDiv = document.getElementById('register-error');
+            
+            if (password !== confirm) {
+                errorDiv.textContent = "Passwords do not match.";
+                errorDiv.style.display = "block";
+                return;
+            }
+            
+            if (password.length < 6) {
+                errorDiv.textContent = "Password must be at least 6 characters long.";
+                errorDiv.style.display = "block";
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('mock_users') || '{}');
+            
+            if (users[email]) {
+                errorDiv.textContent = "Account with this email already exists.";
+                errorDiv.style.display = "block";
+            } else {
+                users[email] = { password: password, name: name };
+                localStorage.setItem('mock_users', JSON.stringify(users));
+                
+                // Auto login
+                const token = generateFakeJWT(email);
+                localStorage.setItem('auth_token', token);
+                localStorage.setItem('login_toast', `Welcome to AlgoFlow, ${name}!`);
+                window.location.href = 'engine.html';
+            }
+        });
+    </script>
+</body>
+</html>
