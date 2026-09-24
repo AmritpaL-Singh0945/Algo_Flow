@@ -1,5 +1,7 @@
 # AlgoFlow 🌊
 
+**🚀 Live Demo:** [https://algo-flow-dsa.vercel.app](https://algo-flow-dsa.vercel.app)
+
 **AlgoFlow** is a sleek, modern, 60FPS data structure and algorithm visualizer. Built completely with Vanilla JavaScript, it demystifies complex algorithms by demonstrating step-by-step logic in motion—without the overhead of heavy frontend frameworks.
 
 ## Features ✨
